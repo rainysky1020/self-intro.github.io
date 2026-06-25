@@ -4,12 +4,10 @@
   const currentPage = document.body.dataset.page;
 
   function getBasePath() {
-    const path = window.location.pathname;
-    if (path.includes("/")) {
-      const segments = path.split("/").filter(Boolean);
-      if (segments.length > 1) {
-        return "../".repeat(segments.length - 1);
-      }
+    const segments = window.location.pathname.split("/").filter(Boolean);
+    // GitHub Pages project site: /repo-name/page.html
+    if (segments.length > 0 && segments[0].endsWith(".github.io")) {
+      return "/" + segments[0] + "/";
     }
     return "";
   }
